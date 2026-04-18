@@ -1,6 +1,8 @@
-module zfw_quick_demo
+module quick-demo
 
-go 1.24.5
+go 1.23.0
+
+toolchain go1.24.5
 
 require github.com/gogf/gf/v2 v2.10.0
 
