@@ -7,7 +7,7 @@ package hello
 import (
 	"context"
 
-	v1 "quick-demo/api/hello/v1"
+	"quick-demo/api/hello/v1"
 )
 
 type IHelloV1 interface {
