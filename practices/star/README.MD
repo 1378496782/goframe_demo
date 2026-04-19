@@ -1,4 +1,3 @@
-# GoFrame Template For SingleRepo
+# GoFrame Template - Star（星辰英语本）
 
-Quick Start: 
-- https://goframe.org/quick
+A complete GoFrame project by zfw.
