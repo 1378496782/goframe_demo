@@ -5,8 +5,6 @@ import (
 	v1 "star/api/words/v1"
 	"star/internal/dao"
 	"star/internal/model/do"
-
-	"github.com/gogf/gf/v2/errors/gerror"
 )
 
 type CreateInput struct {
@@ -28,7 +26,8 @@ func (w *Words) CreateWord(ctx context.Context, in *CreateInput) error {
 		return err
 	}
 	if count > 0 {
-		return gerror.New("单词已存在")
+		return nil
+		// return gerror.Newf("单词%s已存在", in.Word)
 	}
 	_, err = dao.Words.Ctx(ctx).Data(do.Words{
 		Uid:                in.Uid,

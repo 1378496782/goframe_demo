@@ -15,7 +15,7 @@ const (
 )
 
 type CreateWordReq struct {
-	g.Meta             `path:"/word" method:"post" sm:"创建" tags:"单词"`
+	g.Meta             `path:"/word" method:"post" sm:"创建单词" tags:"单词"`
 	Word               string           `json:"word" v:"required|length:1,100" dc:"单词"`
 	Definition         string           `json:"definition" v:"required|length:1,300" dc:"单词定义"`
 	ExampleSentence    string           `json:"example_sentence" v:"required|length:1,300" dc:"例句"`

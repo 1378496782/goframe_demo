@@ -4,12 +4,15 @@ go 1.23.0
 
 toolchain go1.24.5
 
-require github.com/gogf/gf/v2 v2.10.0
+require (
+	github.com/gogf/gf/v2 v2.10.0
+	github.com/golang-jwt/jwt/v5 v5.3.1
+	golang.org/x/sync v0.14.0
+)
 
 require (
 	github.com/emirpasic/gods/v2 v2.0.0-alpha // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
-	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/olekukonko/errors v1.1.0 // indirect
 	github.com/olekukonko/ll v0.0.9 // indirect
