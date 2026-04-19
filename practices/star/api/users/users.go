@@ -15,4 +15,5 @@ type IUsersV1 interface {
 	UserList(ctx context.Context, req *v1.UserListReq) (res *v1.UserListRes, err error)
 	DeleteUser(ctx context.Context, req *v1.DeleteUserReq) (res *v1.DeleteUserRes, err error)
 	GetUser(ctx context.Context, req *v1.GetUserReq) (res *v1.GetUserRes, err error)
+	Login(ctx context.Context, req *v1.LoginReq) (res *v1.LoginRes, err error)
 }
