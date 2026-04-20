@@ -26,6 +26,6 @@ func (w *Words) GetWordsList(ctx context.Context, in *ListInput) (output ListOut
 	}
 
 	output.Words = []entity.Words{}
-	err = dao.Words.Ctx(ctx).Page(in.Page, in.Size).ScanAndCount(&output.Words, &output.Total, true)
+	err = dao.Words.Ctx(ctx).Page(in.Page, in.Size).OrderRandom().ScanAndCount(&output.Words, &output.Total, true)
 	return
 }
