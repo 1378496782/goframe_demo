@@ -1,3 +1,254 @@
-# GoFrame Template - Star（星辰英语本）
+# Star（星辰英语本）BY ZFW
 
-A complete GoFrame project by zfw.
+一个基于 GoFrame 框架开发的单词本 API 服务。
+
+## 功能特性
+
+### 用户功能
+
+- ✅ 用户注册
+- ✅ 用户登录（JWT Token）
+- ✅ 获取用户信息
+- ✅ 获取用户列表
+- ✅ 删除用户
+
+### 单词功能
+
+- ✅ 创建单个单词
+- ✅ 批量创建单词
+- ✅ 分页查询单词列表
+- ✅ 根据 ID 查询单个单词
+- ✅ 更新单词（PUT）
+- ✅ 删除单词
+- ✅ 设置单词熟练度（PATCH，1-5 级）
+
+## 技术栈
+
+- **框架**: [GoFrame](https://goframe.org) v2
+- **数据库**: MySQL
+- **认证**: JWT Token
+- **API 文档**: Swagger UI
+
+## 项目结构
+
+```
+star/
+├── api/                    # API 定义层
+│   ├── account/
+│   ├── users/
+│   └── words/
+├── internal/
+│   ├── cmd/               # 程序入口
+│   ├── controller/        # 控制器层
+│   ├── logic/             # 业务逻辑层
+│   ├── dao/               # 数据访问层
+│   ├── model/             # 模型层
+│   │   ├── do/            # 数据对象
+│   │   └── entity/        # 实体对象
+│   └── middleware/        # 中间件（JWT 认证）
+├── manifest/
+│   ├── config/            # 配置文件
+│   ├── deploy/            # K8s 部署配置
+│   └── docker/            # Docker 相关
+└── main.go
+```
+
+## 快速开始
+
+### 环境要求
+
+- Go 1.18+
+- MySQL 8.0+
+
+### 1. 克隆项目
+
+```bash
+cd /Users/bytedance/GolandProjects/goframe_shop/goframe_demo/practices/star
+```
+
+### 2. 配置数据库
+
+修改 `manifest/config/config.yaml`：
+
+```yaml
+database:
+  default:
+    link: "mysql:root:123abcABC@tcp(127.0.0.1:3306)/star?loc=Local"
+```
+
+### 3. 初始化数据库
+
+创建 `star` 数据库，并导入以下表结构：
+
+```sql
+CREATE TABLE users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    created_at DATETIME,
+    updated_at DATETIME
+);
+
+CREATE TABLE words (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    uid INT UNSIGNED NOT NULL COMMENT '用户 ID',
+    word VARCHAR(100) NOT NULL,
+    definition VARCHAR(300) NOT NULL,
+    example_sentence VARCHAR(300) NOT NULL,
+    chinese_translation VARCHAR(300) NOT NULL,
+    pronunciation VARCHAR(100) NOT NULL,
+    proficiency_level TINYINT NOT NULL DEFAULT 1 COMMENT '1-5',
+    created_at DATETIME,
+    updated_at DATETIME,
+    INDEX idx_uid (uid)
+);
+```
+
+### 4. 安装依赖
+
+```bash
+go mod download
+```
+
+### 5. 运行项目
+
+```bash
+gf run main.go
+# 或者
+go run main.go
+```
+
+### 6. 访问 API 文档
+
+浏览器打开：<http://127.0.0.1:8000/swagger>
+
+## API 接口
+
+### 用户模块
+
+| 方法     | 路径                   | 描述         | 鉴权 |
+| ------ | -------------------- | ---------- | -- |
+| POST   | `/v1/users/register` | 用户注册       | ❌  |
+| POST   | `/v1/users/login`    | 用户登录       | ❌  |
+| GET    | `/v1/users/{id}`     | 获取用户信息     | ✅  |
+| GET    | `/v1/users/list`     | 获取用户列表     | ✅  |
+| DELETE | `/v1/users/{id}`     | 删除用户       | ✅  |
+| GET    | `/v1/account/info`   | 获取当前登录用户信息 | ✅  |
+
+### 单词模块
+
+| 方法     | 路径                      | 描述       | 鉴权 |
+| ------ | ----------------------- | -------- | -- |
+| POST   | `/v1/word`              | 创建单词     | ✅  |
+| POST   | `/v1/word/create/batch` | 批量创建单词   | ✅  |
+| GET    | `/v1/words`             | 分页获取单词列表 | ✅  |
+| GET    | `/v1/word/{id}`         | 获取单个单词   | ✅  |
+| PUT    | `/v1/word/{id}`         | 更新单词     | ✅  |
+| DELETE | `/v1/words/{id}`        | 删除单词     | ✅  |
+| PATCH  | `/v1/words/{id}/level`  | 设置单词熟练度  | ✅  |
+
+## 使用示例
+
+### 1. 用户注册
+
+```bash
+curl -X POST http://127.0.0.1:8000/v1/users/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "demo",
+    "password": "123456",
+    "email": "demo@example.com"
+  }'
+```
+
+### 2. 用户登录
+
+```bash
+curl -X POST http://127.0.0.1:8000/v1/users/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "demo",
+    "password": "123456"
+  }'
+```
+
+返回 Token：
+
+```json
+{
+  "code": 0,
+  "message": "",
+  "data": {
+    "token": "eyJhbGc...xxx"
+  }
+}
+```
+
+### 3. 创建单词
+
+```bash
+curl -X POST http://127.0.0.1:8000/v1/word \
+  -H "Content-Type: application/json" \
+  -H "Authorization: eyJhbGc...xxx" \
+  -d '{
+    "word": "hello",
+    "definition": "Used as a greeting",
+    "example_sentence": "Hello, nice to meet you!",
+    "chinese_translation": "你好",
+    "pronunciation": "/həˈləʊ/",
+    "proficiency_level": 5
+  }'
+```
+
+### 4. 获取单词列表
+
+```bash
+curl -X GET "http://127.0.0.1:8000/v1/words?page=1&size=10" \
+  -H "Authorization: eyJhbGc...xxx"
+```
+
+### 5. 设置单词熟练度
+
+```bash
+curl -X PATCH http://127.0.0.1:8000/v1/words/1/level \
+  -H "Content-Type: application/json" \
+  -H "Authorization: eyJhbGc...xxx" \
+  -d '{
+    "level": 3
+  }'
+```
+
+## 配置说明
+
+配置文件：`manifest/config/config.yaml`
+
+```yaml
+server:
+  address: ":8000"         # 服务端口
+  openapiPath: "/api.json" # OpenAPI 文档
+  swaggerPath: "/swagger"  # Swagger UI
+
+database:
+  default:
+    link: "mysql:root:123abcABC@tcp(127.0.0.1:3306)/star?loc=Local"
+    debug: true
+```
+
+## 开发说明
+
+### 重新生成 DAO
+
+```bash
+gf gen dao
+```
+
+### 重新生成 Controller
+
+```bash
+gf gen ctrl
+```
+
+## 许可证
+
+MIT License
