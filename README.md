@@ -54,6 +54,7 @@ go install github.com/gogf/gf/cmd/gf/v2@latest
 - **认证**: JWT（star 项目）
 - **API 文档**: Swagger UI
 - **并发处理**: errgroup（star 项目）
+- **飞书集成**: 飞书开放平台 API（star 项目）
 
 ## 📝 常用命令
 
