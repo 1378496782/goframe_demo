@@ -35,6 +35,83 @@
 - **API 文档**: Swagger UI
 - **飞书集成**: 飞书开放平台 API（多维表格、消息发送）
 
+## 飞书集成实现说明 ✨
+
+### 整体架构
+
+```
+star/
+├── api/lark/               # API 定义层
+│   └── v1/
+│       └── lark.go         # 定义 API 请求/响应结构
+├── internal/
+│   ├── controller/lark/    # 控制器层
+│   │   └── lark_v1_export_words.go
+│   └── logic/lark/        # 业务逻辑层
+│       └── lark.go        # 核心业务逻辑
+└── utility/lark/          # API 工具类
+    └── client.go         # 飞书 API 客户端封装
+```
+
+### 模块职责
+
+#### 1. API 定义层 (`api/lark/v1/lark.go`)
+- 定义请求结构：`ExportWordsReq`、`SendReminderReq`
+- 定义响应结构：`ExportWordsRes`、`SendReminderRes`
+- 使用 GoFrame 的 API 定义规范
+
+#### 2. 控制器层 (`internal/controller/lark/lark_v1_export_words.go`)
+- 接收 HTTP 请求
+- 从 JWT Token 中获取用户 ID
+- 调用业务逻辑层
+- 返回响应结果
+
+#### 3. 业务逻辑层 (`internal/logic/lark/lark.go`)
+- **导出单词逻辑**
+  - 从数据库查询用户的单词列表
+  - 组织数据格式（表头 + 数据行）
+  - 调用工具类写入多维表格
+  - 返回表格链接和导出数量
+  
+- **发送提醒逻辑**
+  - 查询用户待复习的单词
+  - 构建提醒消息内容
+  - 调用工具类发送飞书消息
+
+#### 4. 工具类层 (`utility/lark/client.go`)
+- **`getTenantAccessToken`** - 获取飞书租户访问令牌
+- **`AppendSpreadsheetRows`** - 追加数据到多维表格
+  - 先调用 API 获取表列表，匹配表名获取表 ID
+  - 构建记录数据（fields 格式）
+  - 调用 `batch_create` 接口批量写入
+- **`SendMessage`** - 发送飞书消息
+  - 构建消息内容（text 格式）
+  - 调用飞书消息发送 API
+
+### 关键代码结构
+
+#### 配置文件 (`manifest/config/config.yaml`)
+```yaml
+lark:
+  appId: "cli_xxxxxxxxxxxx"
+  appSecret: "xxxxxxxxxxxxx"
+  defaultReceiveId: "ou_xxxxxxxxxx"
+  baseToken: "Cx6ubIEy3apIFVsssQdleh4tgeb"
+```
+
+#### 核心流程示例（导出单词）
+1. 用户请求导出 → Controller 接收
+2. 从 Token 提取 userId → Logic 层查询数据库
+3. 组织数据（单词、定义、例句...）→ 调用 Client.AppendSpreadsheetRows
+4. Client 获取表列表 → 匹配表名获取表 ID → 调用飞书 API
+5. 返回结果给用户
+
+### 飞书 API 调用要点
+- **多维表格 API**：使用 `/open-apis/bitable/v1/apps/{app_token}/tables/{table_id}/records/batch_create`
+- **消息发送 API**：使用 `/open-apis/im/v1/messages?receive_id_type=open_id`
+- **认证方式**：使用租户访问令牌（tenant_access_token）
+- **错误处理**：统一捕获错误，记录日志，返回友好提示
+
 ## 项目结构
 
 ```
