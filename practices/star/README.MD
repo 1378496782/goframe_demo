@@ -1,6 +1,6 @@
 # Star（星辰英语本）BY ZFW
 
-一个基于 GoFrame 框架开发的单词本 API 服务。
+一个基于 GoFrame 框架开发的单词本 API 服务，集成了飞书功能。
 
 ## 功能特性
 
@@ -22,12 +22,18 @@
 - ✅ 删除单词
 - ✅ 设置单词熟练度（PATCH，1-5 级）
 
+### 飞书集成功能 ✨
+
+- ✅ **导出单词到飞书多维表格** - 批量导出单词数据到多维表格
+- ✅ **发送学习提醒** - 通过飞书消息发送学习提醒
+
 ## 技术栈
 
 - **框架**: [GoFrame](https://goframe.org) v2
 - **数据库**: MySQL
 - **认证**: JWT Token
 - **API 文档**: Swagger UI
+- **飞书集成**: 飞书开放平台 API（多维表格、消息发送）
 
 ## 项目结构
 
@@ -36,20 +42,22 @@ star/
 ├── api/                    # API 定义层
 │   ├── account/
 │   ├── users/
-│   └── words/
+│   ├── words/
+│   └── lark/              # 飞书 API 定义
 ├── internal/
 │   ├── cmd/               # 程序入口
 │   ├── controller/        # 控制器层
 │   ├── logic/             # 业务逻辑层
+│   │   └── lark/         # 飞书业务逻辑
 │   ├── dao/               # 数据访问层
 │   ├── model/             # 模型层
 │   │   ├── do/            # 数据对象
 │   │   └── entity/        # 实体对象
 │   └── middleware/        # 中间件（JWT 认证）
 ├── manifest/
-│   ├── config/            # 配置文件
-│   ├── deploy/            # K8s 部署配置
-│   └── docker/            # Docker 相关
+│   └── config/            # 配置文件
+├── utility/
+│   └── lark/              # 飞书 API 工具类
 └── main.go
 ```
 
@@ -233,6 +241,13 @@ database:
   default:
     link: "mysql:root:123abcABC@tcp(127.0.0.1:3306)/star?loc=Local"
     debug: true
+
+# 飞书配置 ✨
+lark:
+  appId: "cli_a940a8f1f439dbca"       # 飞书应用 ID
+  appSecret: "cGP2Tz38zr4bL81Musgi1d7YktlMuY5w"  # 飞书应用密钥
+  defaultReceiveId: "ou_873d43281881570cdc0757ba3b977775"  # 默认接收人（飞书 Open ID）
+  baseToken: "Cx6ubIEy3apIFVsssQdleh4tgeb"  # 默认多维表格 Token
 ```
 
 ## 开发说明
