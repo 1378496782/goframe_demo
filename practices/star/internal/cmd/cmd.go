@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"star/internal/controller/account"
+	"star/internal/controller/lark"
 	"star/internal/controller/users"
 	"star/internal/controller/words"
 	"star/internal/logic/middleware"
@@ -30,6 +31,7 @@ var (
 						group.Bind(
 							account.NewV1(),
 							words.NewV1(),
+							lark.NewV1(),
 						)
 					})
 				})

@@ -37,7 +37,7 @@ func (u *Users) Login(ctx context.Context, req *v1.LoginReq) (token string, err 
 		Id:       user.Id,
 		Username: user.Username,
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(6 * time.Hour)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
 		},
 	}
 	token, err = jwt.NewWithClaims(jwt.SigningMethodHS256, uc).SignedString([]byte(consts.JwtKey))
