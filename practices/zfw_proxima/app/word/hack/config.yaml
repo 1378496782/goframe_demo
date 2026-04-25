@@ -4,10 +4,10 @@
 gfcli:
   gen:
     dao:
-      - link: "mysql:root:123abcABC@tcp(127.0.0.1:3306)/user"
+      - link: "mysql:root:123abcABC@tcp(127.0.0.1:3306)/word"
         descriptionTag: true
     pbentity:  
-      - link: "mysql:root:123abcABC@tcp(127.0.0.1:3306)/user"
+      - link: "mysql:root:123abcABC@tcp(127.0.0.1:3306)/word"
 
   docker:
     build: "-a amd64 -s linux -p temp -ew"
