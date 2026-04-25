@@ -1,0 +1,7 @@
+grpc:
+  name:            "rpc_demo"
+  logPath:          "./log"
+  logStdout:        true
+  errorLogEnabled:  true
+  accessLogEnabled: true
+  errorStack:       true
