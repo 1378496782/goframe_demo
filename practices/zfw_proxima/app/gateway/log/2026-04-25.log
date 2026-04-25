@@ -1,0 +1,246 @@
+2026-04-25T13:14:33.491+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:14:33.491+08:00 [INFO] pid[91766]: http server started listening on [:8000]
+2026-04-25T13:14:33.491+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:16:47.314+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:16:47.316+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:16:47.314+08:00 [INFO] pid[93068]: http server started listening on [:8000]
+2026-04-25T13:16:47.317+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:19:29.127+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:19:29.128+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:19:29.127+08:00 [INFO] pid[95051]: http server started listening on [:8000]
+2026-04-25T13:19:29.129+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:19:38.819+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:19:38.819+08:00 [INFO] pid[95173]: http server started listening on [:8000]
+2026-04-25T13:19:38.820+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:19:38.821+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:20:12.880+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:20:12.880+08:00 [INFO] pid[95863]: http server started listening on [:8000]
+2026-04-25T13:20:12.881+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:20:12.881+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:20:28.957+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:20:28.957+08:00 [INFO] pid[96055]: http server started listening on [:8000]
+2026-04-25T13:20:28.958+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:20:28.959+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:21:46.277+08:00 [INFO] pid[97214]: http server started listening on [:8000]
+2026-04-25T13:21:46.277+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:21:46.278+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:21:46.278+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:21:58.600+08:00 [INFO] pid[97374]: http server started listening on [:8000]
+2026-04-25T13:21:58.600+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:21:58.601+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:21:58.602+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:22:55.556+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:22:55.556+08:00 [INFO] pid[98017]: http server started listening on [:8000]
+2026-04-25T13:22:55.558+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:22:55.559+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:25:21.929+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:25:21.931+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:25:21.929+08:00 [INFO] pid[99351]: http server started listening on [:8000]
+2026-04-25T13:25:21.931+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:30:11.271+08:00 [INFO] pid[4940]: http server started listening on [:8000]
+2026-04-25T13:30:11.271+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:30:11.272+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:30:11.273+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:30:53.692+08:00 [INFO] pid[5518]: http server started listening on [:8000]
+2026-04-25T13:30:53.692+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:30:53.694+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:30:53.694+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+
+2026-04-25T13:39:44.864+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} swagger ui is serving at address: http://127.0.0.1:8000/swagger/
+2026-04-25T13:39:44.864+08:00 [INFO] pid[10463]: http server started listening on [:8000]
+2026-04-25T13:39:44.865+08:00 [INFO] {280f278ca481a918ea73f3643d75cd21} openapi specification is serving at address: http://127.0.0.1:8000/api.json
+2026-04-25T13:39:44.866+08:00 [DEBU] {280f278ca481a918ea73f3643d75cd21} service register: &{Head: Deployment: Namespace: Name:default Version: Endpoints:192.168.1.15:8000,10.254.168.183:8000 Metadata:map[insecure:true protocol:http]}
+
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| ADDRESS | METHOD |      ROUTE       |                                 HANDLER                                  |           MIDDLEWARE            |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /api.json        | github.com/gogf/gf/v2/net/ghttp.(*Server).openapiSpec                    |                                 |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | ALL    | /swagger/*       | github.com/gogf/gf/v2/net/ghttp.(*Server).swaggerUI                      | HOOK_BEFORE_SERVE               |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/users/login  | zfw_proxima/app/gateway/internal/controller/user.(*ControllerV1).Login   | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | POST   | /v1/words/create | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Create | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+| :8000   | GET    | /v1/words/{id}   | zfw_proxima/app/gateway/internal/controller/words.(*ControllerV1).Detail | ghttp.MiddlewareHandlerResponse |
+----------|--------|------------------|--------------------------------------------------------------------------|----------------------------------
+

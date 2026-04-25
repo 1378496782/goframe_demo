@@ -1,0 +1,18 @@
+2026-04-25T13:28:10.192+08:00 {7051bf1d6382a9182ae03525b0032c1b} 200 "POST http 127.0.0.1:8000 /v1/users/login HTTP/1.1" 6204.292, 127.0.0.1, "", "PostmanRuntime/7.53.0", 51, "Validation Failed", ""
+Stack:
+The username value `1` length must be between 3 and 12
+2026-04-25T13:28:14.970+08:00 {88f4e03a6482a9182be03525513e71ce} 200 "POST http 127.0.0.1:8000 /v1/users/login HTTP/1.1" 267.666, 127.0.0.1, "", "PostmanRuntime/7.53.0", 51, "Validation Failed", ""
+Stack:
+The password value `1` length must be between 6 and 16
+2026-04-25T13:38:00.634+08:00 {b8f12897ec82a9183fc85a3366e215a9} 200 "GET http 127.0.0.1:8000 /v1/words/2 HTTP/1.1" 398.958, 127.0.0.1, "", "PostmanRuntime/7.53.0", 51, "Validation Failed", ""
+Stack:
+InvalidRules: number
+2026-04-25T13:38:45.120+08:00 {9877b7f2f682a91842c85a33bb1a9fd1} 200 "GET http 127.0.0.1:8000 /v1/words/2 HTTP/1.1" 523.041, 127.0.0.1, "", "PostmanRuntime/7.53.0", 51, "Validation Failed", ""
+Stack:
+InvalidRules: number
+2026-04-25T13:38:48.631+08:00 {30cc02c4f782a91843c85a33ee7b7924} 200 "GET http 127.0.0.1:8000 /v1/words/1 HTTP/1.1" 183.917, 127.0.0.1, "", "PostmanRuntime/7.53.0", 51, "Validation Failed", ""
+Stack:
+InvalidRules: number
+2026-04-25T13:39:13.162+08:00 {38aa297afd82a91844c85a33e8fe380e} 200 "GET http localhost:8000 /v1/words/1 HTTP/1.1" 121.958, ::1, "", "curl/8.7.1", 51, "Validation Failed", ""
+Stack:
+InvalidRules: number

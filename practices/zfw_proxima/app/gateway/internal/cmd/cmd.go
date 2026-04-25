@@ -7,7 +7,8 @@ import (
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
 
-	"zfw_proxima/app/gateway/internal/controller/hello"
+	"zfw_proxima/app/gateway/internal/controller/user"
+	"zfw_proxima/app/gateway/internal/controller/words"
 )
 
 var (
@@ -19,9 +20,14 @@ var (
 			s := g.Server()
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
-				group.Bind(
-					hello.NewV1(),
-				)
+				group.Group("/v1", func(group *ghttp.RouterGroup) {
+					group.Group("/", func(group *ghttp.RouterGroup) {
+						group.Bind(
+							user.NewV1(),
+							words.NewV1(),
+						)
+					})
+				})
 			})
 			s.Run()
 			return nil
