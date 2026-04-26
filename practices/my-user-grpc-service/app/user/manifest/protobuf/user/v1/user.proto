@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package user.v1;
+
+option go_package = "app/user/api/v1";
+
+import "pbentity/user.proto";
+
+service User {
+    rpc GetList(GetListReq) returns (GetListRes) {}
+    rpc GetOne(GetOneReq) returns (GetOneRes) {}
+    rpc Create(CreateReq) returns (CreateRes) {}
+    rpc Delete(DeleteReq) returns (DeleteRes) {}
+}
+
+message GetListReq {
+    int32 Page = 1;
+    int32 Size = 2;
+}
+
+message GetListRes {
+    repeated pbentity.User Users = 1;
+}
+
+message GetOneReq {
+    uint64 Id = 1; // v: required
+}
+
+message GetOneRes {
+    pbentity.User User = 1;
+}
+
+message CreateReq {
+    string Passport = 1; // v: required
+    string Password = 2; // v: required
+    string Nickname = 3; // v: required
+}
+
+message CreateRes {}
+
+message DeleteReq {
+    uint64 Id = 1; // v: required
+}
+
+message DeleteRes {}

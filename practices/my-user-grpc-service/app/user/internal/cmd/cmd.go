@@ -1,0 +1,33 @@
+package cmd
+
+import (
+	"context"
+	"my-user-grpc-service/app/user/internal/controller/user"
+
+	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
+	"github.com/gogf/gf/v2/os/gcmd"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
+)
+
+var (
+	Main = gcmd.Command{
+		Name:  "main",
+		Usage: "main",
+		Brief: "start grpc service by zfw",
+		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
+			c := grpcx.Server.NewConfig()
+			c.Options = append(c.Options, []grpc.ServerOption{
+				grpcx.Server.ChainUnary(
+					grpcx.Server.UnaryValidate,
+				)}...,
+			)
+			s := grpcx.Server.New(c)
+			user.Register(s)
+			// Enable reflection API for grpcurl
+			reflection.Register(s.Server)
+			s.Run()
+			return nil
+		},
+	}
+)
