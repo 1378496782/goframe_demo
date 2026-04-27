@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人资料 - 用户管理系统</title>
+    <link rel="stylesheet" href="../resource/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">用户管理系统</a>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="list.html">用户列表</a>
+                <a href="profile.html" class="active">个人资料</a>
+                <button id="logoutBtn">登出</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>个人资料</h1>
+            <p>查看您的个人信息</p>
+        </div>
+
+        <div class="profile-card">
+            <div class="error-message" id="errorMessage" style="display:none"></div>
+            <div class="profile-info" id="profileInfo" style="display:none">
+                <div class="profile-item">
+                    <span class="profile-label">ID：</span>
+                    <span id="userId"></span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">账号：</span>
+                    <span id="userPassport"></span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">昵称：</span>
+                    <span id="userNickname"></span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">注册时间：</span>
+                    <span id="userCreateAt"></span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">更新时间：</span>
+                    <span id="userUpdateAt"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 用户管理系统 - 基于 GoFrame 框架</p>
+    </footer>
+
+    <script src="../resource/js/common.js"></script>
+    <script src="../resource/js/profile.js"></script>
+</body>
+</html>

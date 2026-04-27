@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户列表 - 用户管理系统</title>
+    <link rel="stylesheet" href="../resource/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">用户管理系统</a>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="list.html" class="active">用户列表</a>
+                <a href="login.html" id="loginLink">登录</a>
+                <a href="signup.html" id="signupLink">注册</a>
+                <a href="profile.html" id="profileLink" style="display:none">个人资料</a>
+                <button id="logoutBtn" style="display:none">登出</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>用户列表</h1>
+            <p>查看所有注册的用户</p>
+        </div>
+
+        <div class="table-container">
+            <table class="user-table" id="userTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>账号</th>
+                        <th>昵称</th>
+                        <th>创建时间</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <tr>
+                        <td colspan="4" class="loading-cell">加载中...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 用户管理系统 - 基于 GoFrame 框架</p>
+    </footer>
+
+    <script src="../resource/js/common.js"></script>
+    <script src="../resource/js/list.js"></script>
+</body>
+</html>

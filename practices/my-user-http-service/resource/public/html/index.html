@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理系统</title>
+    <link rel="stylesheet" href="../resource/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">用户管理系统</a>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="list.html">用户列表</a>
+                <a href="login.html" id="loginLink">登录</a>
+                <a href="signup.html" id="signupLink">注册</a>
+                <a href="profile.html" id="profileLink" style="display:none">个人资料</a>
+                <button id="logoutBtn" style="display:none">登出</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>欢迎使用用户管理系统</h1>
+            <p>这是一个基于 GoFrame 框架构建的用户管理系统演示项目</p>
+            <div class="hero-actions">
+                <a href="signup.html" class="btn btn-primary">立即注册</a>
+                <a href="login.html" class="btn btn-secondary">登录系统</a>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>功能特性</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>用户注册</h3>
+                    <p>支持注册新用户，自动验证账号和昵称</p>
+                </div>
+                <div class="feature-card">
+                    <h3>用户登录</h3>
+                    <p>安全的会话管理，支持登录状态保持</p>
+                </div>
+                <div class="feature-card">
+                    <h3>用户列表</h3>
+                    <p>查看所有注册的用户列表</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 用户管理系统 - 基于 GoFrame 框架</p>
+    </footer>
+
+    <script src="../resource/js/common.js"></script>
+    <script src="../resource/js/index.js"></script>
+</body>
+</html>

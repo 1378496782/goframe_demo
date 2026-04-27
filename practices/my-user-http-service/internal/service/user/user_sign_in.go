@@ -24,15 +24,12 @@ func (s *Service) SignIn(ctx context.Context, in SignInInput) (err error) {
 		Passport: in.Passport,
 		Password: in.Password,
 	}).Scan(user)
-	if err != nil {
-		return err
-	}
-	if user.Id == 0 {
-		return gerror.New("用户不存在")
+	if err != nil || user.Id == 0 {
+		return gerror.New("用户不存在或密码错误。")
 	}
 	err = s.sessionSvc.SetUser(ctx, user)
 	if err != nil {
-		return err
+		return gerror.New("登录失败。")
 	}
 	s.bizCtxSvc.SetUser(ctx, &bizctx.User{
 		Id:       user.Id,

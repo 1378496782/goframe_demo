@@ -26,6 +26,15 @@ func mainFunc(ctx context.Context, parser *gcmd.Parser) (err error) {
 		middlewareSvc = middleware.New()
 	)
 	s.Use(ghttp.MiddlewareHandlerResponse)
+
+	// 配置静态文件服务
+	s.SetServerRoot("resource/public")
+
+	// 根路径重定向到首页
+	s.BindHandler("/", func(r *ghttp.Request) {
+		r.Response.RedirectTo("/index.html")
+	})
+
 	s.Group("/", func(group *ghttp.RouterGroup) {
 		// Group middlewares.
 		group.Middleware(

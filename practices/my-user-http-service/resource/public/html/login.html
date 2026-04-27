@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 用户管理系统</title>
+    <link rel="stylesheet" href="../resource/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">用户管理系统</a>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="list.html">用户列表</a>
+                <a href="login.html" class="active">登录</a>
+                <a href="signup.html">注册</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="auth-form">
+            <h1>用户登录</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="passport">账号（Passport）</label>
+                    <input type="text" id="passport" name="passport" placeholder="请输入账号" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" placeholder="请输入密码" required autocomplete="current-password">
+                    <span class="input-icon" id="togglePassword" title="显示/隐藏密码">👁️</span>
+                </div>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="success-message" id="successMessage"></div>
+                <button type="submit" class="btn btn-primary btn-full" id="loginBtn">登录</button>
+            </form>
+            <p class="auth-link">
+                没有账号？<a href="signup.html">立即注册</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 用户管理系统 - 基于 GoFrame 框架</p>
+    </footer>
+
+    <script src="../resource/js/common.js"></script>
+    <script src="../resource/js/login.js"></script>
+</body>
+</html>
