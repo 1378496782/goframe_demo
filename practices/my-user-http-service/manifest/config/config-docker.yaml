@@ -12,5 +12,13 @@ logger:
 # https://goframe.org/docs/core/gdb-config-file
 database:
   default:
-    link: "mysql:root:12345678@tcp(mysql:3306)/test?charset=utf8mb4&parseTime=True&loc=Asia/Shanghai"
+    type: "mysql"
+    host: "mysql"
+    port: "3306"
+    user: "root"
+    pass: "12345678"
+    name: "test"
+    role: "master"
+    debug: true
+    charset: "utf8mb4"
     timezone: "Asia/Shanghai"

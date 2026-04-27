@@ -273,6 +273,216 @@ kubectl apply -k manifest/deploy/kustomize/overlays/develop
 | GF_DATABASE_USER | root | 数据库用户名 |
 | GF_DATABASE_PASS | 12345678 | 数据库密码 |
 
+## 部署原理解析
+
+### 🏗️ 整体架构
+
+项目采用 **Docker Compose** 容器化部署，包含两个主要服务：
+
+```
+┌───────────────────────────────────────────────┐
+│              User's Browser                   │
+│    (访问 localhost:8000)                     │
+└────────────────┬──────────────────────────────┘
+                 │
+                 ▼
+┌───────────────────────────────────────────────┐
+│      my-user-service (Go应用容器)             │
+│         - 监听 8000 端口                      │
+│         - 处理 HTTP 请求                      │
+└────────────────┬──────────────────────────────┘
+                 │
+                 ▼
+┌───────────────────────────────────────────────┐
+│   user-service-mysql (MySQL数据库容器)        │
+│         - 监听 3306 端口 (容器内)             │
+│         - 映射到宿主 3307 端口               │
+└───────────────────────────────────────────────┘
+```
+
+### 📦 关键部署文件详解
+
+#### 1️⃣ Dockerfile - 构建应用镜像
+
+```dockerfile
+# 基础镜像：轻量级 Alpine Linux
+FROM alpine:3.18
+
+# 时区配置
+RUN apk add --no-cache tzdata
+ENV TZ=Asia/Shanghai
+
+# 设置工作目录
+ENV WORKDIR /app
+WORKDIR $WORKDIR
+
+# 复制资源文件
+ADD resource /app/resource
+ADD manifest /app/manifest
+ADD ./temp/linux_amd64/main /app/main
+RUN chmod +x /app/main
+
+# 使用 Docker 专用配置文件
+RUN mv /app/manifest/config/config-docker.yaml /app/manifest/config/config.yaml
+
+# 启动应用
+CMD ./main
+```
+
+**工作原理：**
+- 基于 Alpine 3.18 构建（仅 5MB）
+- 复制编译好的 Go 二进制文件（Linux/amd64）
+- 复制前端资源文件
+- 替换配置文件为 Docker 环境专用版本
+
+#### 2️⃣ docker-compose.yml - 服务编排
+
+```yaml
+services:
+  # MySQL 数据库服务
+  mysql:
+    image: mysql:8.0
+    container_name: user-service-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: test
+    ports:
+      - "3307:3306"  # 容器内 3306 → 宿主 3307
+    volumes:
+      - mysql-data:/var/lib/mysql  # 数据持久化
+      - ./manifest/sql:/docker-entrypoint-initdb.d  # 自动初始化
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p12345678"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Go 应用服务
+  app:
+    image: my-user-service:latest
+    container_name: my-user-service
+    ports:
+      - "8000:8000"  # 容器内 8000 → 宿主 8000
+    depends_on:
+      mysql:
+        condition: service_healthy  # 等 MySQL 健康再启动
+```
+
+**工作原理：**
+- **服务依赖：** `app` 依赖 `mysql`，并等待 MySQL 健康检查通过
+- **网络：** 两个容器在同一个 Docker 网络，可以通过服务名互相访问
+- **数据持久化：** MySQL 数据存储在 Docker Volume，容器删除数据不丢失
+- **端口映射：** 外部访问 8000 → 容器 8000，本地 MySQL 工具访问 3307 → 容器 3306
+
+#### 3️⃣ config-docker.yaml - Docker 环境配置
+
+```yaml
+database:
+  default:
+    type: "mysql"
+    host: "mysql"  # 关键！使用 Docker 服务名而非 IP
+    port: "3306"
+    user: "root"
+    pass: "12345678"
+    name: "test"
+```
+
+**核心原理：**
+- Docker Compose 会自动创建一个内部 DNS
+- 容器可以通过服务名（`mysql`）互相访问
+- 不需要知道具体的 IP 地址
+
+#### 4️⃣ deploy.sh - 部署脚本
+
+**核心流程：**
+
+```bash
+# 1. 构建 Linux 二进制文件
+GOOS=linux GOARCH=amd64 go build -o temp/linux_amd64/main main.go
+
+# 2. 构建 Docker 镜像
+docker build -t my-user-service:latest -f manifest/docker/Dockerfile .
+
+# 3. 启动服务
+docker-compose up -d
+```
+
+### 🔄 部署完整流程
+
+```
+┌───────────────────────────────────────────────────────────┐
+│                    1. 本地编译                             │
+│  GOOS=linux GOARCH=amd64 go build → Linux 二进制文件       │
+└───────────────────────┬───────────────────────────────────┘
+                        ▼
+┌───────────────────────────────────────────────────────────┐
+│                    2. 构建镜像                             │
+│  docker build → 打包二进制 + 资源 + 配置 → my-user-service │
+└───────────────────────┬───────────────────────────────────┘
+                        ▼
+┌───────────────────────────────────────────────────────────┐
+│                    3. 启动容器                             │
+│  docker-compose up → 启动 MySQL 和 App 容器               │
+└───────────────────────┬───────────────────────────────────┘
+                        ▼
+┌───────────────────────────────────────────────────────────┐
+│                    4. 服务就绪                             │
+│  - MySQL 初始化数据库表                                    │
+│  - App 连接 MySQL (通过服务名)                           │
+│  - 监听 8000 端口                                         │
+└───────────────────────────────────────────────────────────┘
+```
+
+### 🎯 关键技术点
+
+#### 1️⃣ 跨平台编译
+```bash
+GOOS=linux GOARCH=amd64 go build
+```
+- 在 Mac 上编译出 Linux 可执行文件
+- 这样二进制就能在 Alpine Linux 容器中运行
+
+#### 2️⃣ Docker 网络
+- 同一 Compose 项目的容器在同一网络
+- 通过服务名（`mysql`）互相访问
+- 自动服务发现
+
+#### 3️⃣ 数据持久化
+```yaml
+volumes:
+  - mysql-data:/var/lib/mysql
+```
+- 使用 Docker Volume 存储 MySQL 数据
+- 容器重启/删除数据不丢失
+
+#### 4️⃣ 健康检查
+```yaml
+healthcheck:
+  test: ["CMD", "mysqladmin", "ping", ...]
+```
+- 确保 MySQL 真正就绪后才启动应用
+- 避免连接错误
+
+### 🚀 为什么这样部署？
+
+| 优势 | 说明 |
+|------|------|
+| **环境一致性** | 开发/测试/生产环境完全一致 |
+| **依赖隔离** | MySQL 和应用分别容器化，互不影响 |
+| **快速部署** | 一条命令启动所有服务 |
+| **易于扩展** | 可以轻松添加 Redis、Nginx 等服务 |
+| **便于迁移** | 可以在任何 Docker 环境运行 |
+
+### 💡 总结
+
+这个部署方案的核心思想是：
+1. **编译一次** - 构建出 Linux 二进制
+2. **打包镜像** - 把所有依赖打包进 Docker
+3. **编排启动** - 用 Docker Compose 管理服务关系
+4. **服务发现** - 通过服务名互相通信
+
+这样无论你在本地、云服务器、还是 Kubernetes 上，都可以用同样的方式运行！
+
 ## 使用说明
 
 ### 运行服务器
