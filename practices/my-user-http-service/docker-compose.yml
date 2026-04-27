@@ -35,3 +35,5 @@ services:
 
 volumes:
   mysql-data:
+    external:
+      name: 16ddee50559782df7ff7912202b7a63a4934dfb6134534d2bf9383ef0161c26a
