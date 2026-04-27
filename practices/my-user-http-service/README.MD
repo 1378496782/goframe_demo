@@ -109,8 +109,13 @@
 
 ## 环境要求
 
+### 本地开发
 - Go 1.23或更高版本
 - MySQL 5.7或更高版本
+
+### Docker 部署
+- Docker
+- Docker Compose (可选)
 
 # 前置准备
 
@@ -190,6 +195,83 @@ database:
 
 ### 个人资料页
 ![个人资料](./docs/images/profile.png)
+
+## 部署指南
+
+### 方式一：使用一键部署脚本（推荐）
+
+项目提供了 `deploy.sh` 一键部署脚本，最简单的部署方式：
+
+```bash
+# 1. 进入项目目录
+cd goframe_demo/practices/my-user-http-service
+
+# 2. 构建并启动服务
+./deploy.sh start
+
+# 3. 查看服务状态
+./deploy.sh status
+
+# 4. 查看日志
+./deploy.sh logs
+```
+
+**访问地址：** http://localhost:8000/html/index.html
+
+**常用命令：**
+```bash
+./deploy.sh start    # 启动服务
+./deploy.sh stop     # 停止服务
+./deploy.sh restart  # 重启服务
+./deploy.sh status   # 查看状态
+./deploy.sh logs     # 查看日志
+./deploy.sh clean    # 清理所有资源
+```
+
+### 方式二：Docker Compose 部署
+
+```bash
+# 1. 构建 Linux 二进制文件
+GOOS=linux GOARCH=amd64 go build -o temp/linux_amd64/main main.go
+
+# 2. 构建 Docker 镜像
+docker build -t my-user-service:latest -f manifest/docker/Dockerfile .
+
+# 3. 启动服务
+docker-compose up -d
+
+# 4. 查看服务状态
+docker-compose ps
+```
+
+### 方式三：Kubernetes 部署
+
+项目已包含 Kubernetes 部署配置（位于 `manifest/deploy/kustomize/`）：
+
+```bash
+# 使用 Kustomize 部署
+kubectl apply -k manifest/deploy/kustomize/overlays/develop
+```
+
+### 部署文件说明
+
+| 文件 | 说明 |
+|------|------|
+| `docker-compose.yml` | Docker Compose 配置文件 |
+| `deploy.sh` | 一键部署脚本 |
+| `manifest/docker/Dockerfile` | Docker 镜像构建文件 |
+| `manifest/config/config-docker.yaml` | Docker 环境专用配置 |
+| `manifest/sql/init.sql` | 数据库初始化脚本 |
+
+### Docker 环境变量
+
+| 变量名 | 默认值 | 说明 |
+|--------|--------|------|
+| GF_SERVER_ADDRESS | :8000 | 服务监听地址 |
+| GF_DATABASE_HOST | mysql:3306 | 数据库地址 |
+| GF_DATABASE_NAME | test | 数据库名称 |
+| GF_DATABASE_USER | root | 数据库用户名 |
+| GF_DATABASE_PASS | 12345678 | 数据库密码 |
 
 ## 使用说明
 
