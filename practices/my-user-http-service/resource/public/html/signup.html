@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>注册 - 用户管理系统</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
     <link rel="stylesheet" href="../resource/css/style.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
@@ -25,11 +29,13 @@
             <form id="signupForm">
                 <div class="form-group">
                     <label for="passport">账号（Passport）</label>
-                    <input type="text" id="passport" name="passport" placeholder="请输入账号（6-16 字符）" required autocomplete="username" minlength="6" maxlength="16">
+                    <input type="text" id="passport" name="passport" placeholder="请输入账号（6-16 字符）" required
+                        autocomplete="username" minlength="6" maxlength="16">
                 </div>
                 <div class="form-group">
                     <label for="password">密码</label>
-                    <input type="password" id="password" name="password" placeholder="请输入密码（6-16 字符）" required autocomplete="new-password" minlength="6" maxlength="16">
+                    <input type="password" id="password" name="password" placeholder="请输入密码（6-16 字符）" required
+                        autocomplete="new-password" minlength="6" maxlength="16">
                     <span class="input-icon" id="togglePassword" title="显示/隐藏密码">👁️</span>
                     <div class="password-strength">
                         <div class="password-strength-bar" id="passwordStrengthBar"></div>
@@ -38,12 +44,14 @@
                 </div>
                 <div class="form-group">
                     <label for="password2">确认密码</label>
-                    <input type="password" id="password2" name="password2" placeholder="请再次输入密码" required autocomplete="new-password">
+                    <input type="password" id="password2" name="password2" placeholder="请再次输入密码" required
+                        autocomplete="new-password">
                     <span class="input-icon" id="togglePassword2" title="显示/隐藏密码">👁️</span>
                 </div>
                 <div class="form-group">
                     <label for="nickname">昵称（可选）</label>
-                    <input type="text" id="nickname" name="nickname" placeholder="请输入昵称，不填则用账号作为昵称" autocomplete="nickname">
+                    <input type="text" id="nickname" name="nickname" placeholder="请输入昵称，不填则用账号作为昵称"
+                        autocomplete="nickname">
                 </div>
                 <div class="error-message" id="errorMessage"></div>
                 <div class="success-message" id="successMessage"></div>
@@ -62,4 +70,5 @@
     <script src="../resource/js/common.js"></script>
     <script src="../resource/js/signup.js"></script>
 </body>
+
 </html>

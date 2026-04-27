@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录 - 用户管理系统</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
     <link rel="stylesheet" href="../resource/css/style.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
@@ -25,11 +29,13 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label for="passport">账号（Passport）</label>
-                    <input type="text" id="passport" name="passport" placeholder="请输入账号" required autocomplete="username">
+                    <input type="text" id="passport" name="passport" placeholder="请输入账号" required
+                        autocomplete="username">
                 </div>
                 <div class="form-group">
                     <label for="password">密码</label>
-                    <input type="password" id="password" name="password" placeholder="请输入密码" required autocomplete="current-password">
+                    <input type="password" id="password" name="password" placeholder="请输入密码" required
+                        autocomplete="current-password">
                     <span class="input-icon" id="togglePassword" title="显示/隐藏密码">👁️</span>
                 </div>
                 <div class="error-message" id="errorMessage"></div>
@@ -49,4 +55,5 @@
     <script src="../resource/js/common.js"></script>
     <script src="../resource/js/login.js"></script>
 </body>
+
 </html>
